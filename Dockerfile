@@ -15,7 +15,7 @@ ln -sf /opt/arachni-$VERSION_ARACHNI /opt/arachni && \
 useradd -m -s /bin/sh user && \
 mkdir /work && \
 chown -R user /work /opt/arachni-$VERSION_ARACHNI && \
-echo "Success"
+echo "Success!”
 
 USER user
 

@@ -1,8 +1,11 @@
+# Docker file to create Arachni container
+
 FROM ubuntu:latest
 MAINTAINER vilius
 
-ENV VERSION_FRAMEWORK 1.3.2
-ENV VERSION_ARACHNI $VERSION_FRAMEWORK-0.5.9
+ENV VERSION_FRAMEWORK 1.4
+ENV VERSION_ARACHNI $VERSION_FRAMEWORK-0.5.10
+# ENV IPAddress 0.0.0.0
 
 RUN apt-get -qq update && \
 apt-get install -yq  wget ruby bash && \
@@ -15,14 +18,15 @@ ln -sf /opt/arachni-$VERSION_ARACHNI /opt/arachni && \
 useradd -m -s /bin/sh user && \
 mkdir /work && \
 chown -R user /work /opt/arachni-$VERSION_ARACHNI && \
-echo "Success!”
+echo “Success”
 
 USER user
 
 ENV PATH /opt/arachni/bin:$PATH
 
-VOLUME ["/work"]
+VOLUME [“/work”]
 EXPOSE 7331
 # WORKDIR /
+CMD /bin/bash
+# CMD [“/opt/arachni/bin/arachni_rpcd”,“–address”,“0.0.0.0”]
 
-CMD ["/opt/arachni/bin/arachni_rpcd","--address","0.0.0.0"]

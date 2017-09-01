@@ -1,4 +1,5 @@
 # Docker file to create Arachni container
+# Created by Vilius
 
 FROM ubuntu:latest
 MAINTAINER vilius
